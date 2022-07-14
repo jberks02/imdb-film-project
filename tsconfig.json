@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "types/*": ["./types/*"]
+        },
+        "allowJs": true,
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "noEmit": true,
+        "jsx": "react",
+        "sourceMap": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "experimentalDecorators": true,
+        "noFallthroughCasesInSwitch": true,
+        "lib": ["dom", "ES2019.Array"],
+        "target": "ES2020",
+        "module": "esnext", 
+        "rootDirs": [
+            "./src"
+        ], 
+        "typeRoots": [
+            "./node_modules/@types", 
+            "./src/types"
+        ], 
+        "noImplicitAny": true,
+        "declaration": true, 
+        "esModuleInterop": true, 
+        "resolveJsonModule": true, 
+        "noErrorTruncation": true
+    }, 
+    "exclude": [
+        "toolbox", 
+        "target", 
+        "__mocks__", 
+        "src/**/*.tests.ts",
+        "web/**/*.tests.ts"
+    ]
+}
