@@ -1,0 +1,16 @@
+.banner-div {
+    background-color: #212121;
+    color: #EEE;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+}
+
+.banner-heading {
+    font-size: 30px;
+    vertical-align: middle;
+}
