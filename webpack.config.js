@@ -33,7 +33,7 @@ module.exports = {
         devMiddleware: {
             publicPath: 'http://localhost:3000/dist/',
         },
-        hot: true,
+        hot: false
     },
     plugins: [new webpack.HotModuleReplacementPlugin()], // used for hot reloading when developing
     devtool: 'eval-source-map', // builds high quality source maps

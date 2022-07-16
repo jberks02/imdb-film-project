@@ -1,20 +1,5 @@
 import { delay } from "../utils/delay";
-
-interface top250Response {
-    errorMessage: string;
-    items: {
-        crew: string;
-        fullTitle: string;
-        id: string;
-        imDbRating: string;
-        imDbRatingCount: string;
-        image: string;
-        rank: string;
-        title: string;
-        year: string;
-        favorite?: boolean;
-    }[]
-}
+import { top250Response } from "../types/imdb_types";
 
 export async function get_top_250(): Promise<top250Response['items']> {
 
@@ -26,12 +11,15 @@ export async function get_top_250(): Promise<top250Response['items']> {
 
         const top: top250Response = await request.json();
 
+        console.log(top)
+
         return top.items
 
     } catch (err) {
         console.error(err);
         await delay(.5);
-        return await get_top_250()
+        // return await get_top_250()
+        return []
     }
 
 }
