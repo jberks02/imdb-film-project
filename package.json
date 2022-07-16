@@ -25,6 +25,10 @@
   },
   "homepage": "https://github.com/jberks02/React-Typescript#readme",
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.0",
     "concurrently": "^7.0.0",
     "kea": "^3.0.0",
     "node-fetch": "^3.2.1",
