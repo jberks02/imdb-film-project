@@ -15,3 +15,8 @@ export interface top250Response {
     errorMessage: string;
     items: imdbMovie[]
 }
+
+interface TileProps extends imdbMovie {
+    index: number;
+    update_favorite: Function
+}

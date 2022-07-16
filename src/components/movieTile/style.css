@@ -1,27 +1,21 @@
 .tile {
-    min-width: 24%;
-    max-width: 24%;
+    /* min-width: 24%; */
+    max-width: 19%;
     margin: 2px;
     padding: 5px;
-    background-color: rgb(60, 59, 59);
-    color: #EEE;
-    height: 500px;
+    background-color: #fefefe;
+    height: 100%;
 }
 
 .tile-title {
-    width: 100%;
-    padding: 10px;
-    height: 20px;
+    width: 95%;
+    padding: 5px 0px 5px 10px;
+    height: 100%;
 
 }
 
 .image-container {
     display: inline-block;
-    width: 100%;
+    width: 95%;
     padding-left: 15px;
-}
-
-.imageContainer {
-    width: 50%;
-    height: 50%;
 }

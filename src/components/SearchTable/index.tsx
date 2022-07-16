@@ -6,7 +6,9 @@ import { MovieTile } from '../movieTile/index';
 
 export function SearchTable() {
 
-    const { load_top_250 } = useActions(logic);
+    const [filterString, setFilter] = useState('')
+
+    const { load_top_250, favorite_toggle } = useActions(logic);
 
     const { films, loading } = useValues(logic)
 
@@ -21,6 +23,8 @@ export function SearchTable() {
                 films.list.map((film, i) => <MovieTile
                     key={film.id + i}
                     {...film}
+                    update_favorite={favorite_toggle}
+                    index={i}
                 />)
             }
         </div>

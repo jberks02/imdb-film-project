@@ -1,30 +1,32 @@
 import React from "react";
-import { imdbMovie } from "../../types/imdb_types";
+import { TileProps } from "../../types/imdb_types";
 import { IconButton } from "@mui/material";
-import { Star, StarBorder } from '@mui/icons-material';
+import { Star, StarOutline } from '@mui/icons-material';
 import './style.css'
 
 
-export function MovieTile(props: imdbMovie) {
-    const { id, imDbRating, imDbRatingCount, image, fullTitle, crew, rank, year, favorite } = props
+
+export function MovieTile(props: TileProps) {
+    const { imDbRating, image, fullTitle, crew, rank, favorite, update_favorite, index } = props
 
     return (
         <div className="tile">
             <div className='tile-title'>
-                <IconButton style={{ float: 'left', paddingLeft: 0 }}>
-                    {favorite ? <Star /> : <StarBorder />}
+                <IconButton style={{ float: 'left', padding: 5 }} onClick={() => { update_favorite(index) }}>
+                    {favorite === true ? <StarOutline style={{ fill: 'gold', stroke: 'gold', paddingRight: 5 }} /> : <Star style={{ fill: 'gold', stroke: 'gold', paddingRight: 5 }} />}
                 </IconButton>
-                <span style={{ lineHeight: 2.5 }}>{fullTitle}</span>
+                <span >{fullTitle}</span>
             </div>
 
             <div className="image-container">
-                <img src={image} alt='Movie Display Image' className='imageContainer' />
+                <img src={image} alt='Movie Display Image' />
+                <ul style={{ listStyle: 'none', paddingLeft: 15, display: 'inline-block', width: '40%', verticalAlign: 'top' }}>
+                    <li>Rating: {imDbRating}</li>
+                    <li>Rank: {rank}</li>
+                    <li>Crew: {crew}</li>
+                </ul>
             </div>
-            <ul>
-                <li>Rating: {imDbRating}</li>
-                {/* <li>PlaceMent: {imDbRatingCount}</li> */}
 
-            </ul>
 
         </div >
     )
