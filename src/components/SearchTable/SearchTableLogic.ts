@@ -1,4 +1,3 @@
-import { listClasses } from '@mui/material';
 import { kea, MakeLogicType } from 'kea'
 import { imdbMovie } from 'types/imdb_types';
 import { get_top_250 } from '../../api_calls/imdb_api';
@@ -26,6 +25,7 @@ interface Actions {
     toggleLoading: true;
     load_top_250: () => ({});
     favorite_toggle: (index: number) => ({ index: number })
+    search_top_250: (search: string) => ({ search: string })
 }
 
 type myLogicType = MakeLogicType<Values, Actions, Props>
@@ -35,7 +35,8 @@ export const logic = kea<myLogicType>({
         top_250: (set) => ({ set }),
         toggleLoading: true,
         load_top_250: () => ({}),
-        favorite_toggle: (index) => ({ index })
+        favorite_toggle: (index) => ({ index }),
+        search_top_250: (search) => ({ search })
     },
     listeners: ({ actions }) => ({
         load_top_250: async () => {
@@ -94,6 +95,15 @@ export const logic = kea<myLogicType>({
                     localStorage.setItem('favorites', JSON.stringify(keyedFavoritesList))
                     localStorage.setItem('imdbtop250', JSON.stringify(state))
                     return { ...state }
+                },
+                search_top_250: (_, { search }) => {
+                    const set: Values['films'] = JSON.parse(localStorage.getItem('imdbtop250') as string);
+                    return {
+                        ...set,
+                        list: set.list.filter((y) => {
+                            return y.fullTitle.toLowerCase().includes(search.toLowerCase());
+                        })
+                    }
                 }
             },
         ],

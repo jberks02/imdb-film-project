@@ -6,8 +6,7 @@
     text-align: center;
     width: 100%;
     display: block;
-    top: 0;
-    left: 0;
+    height: 50px;
 }
 
 .banner-heading {
