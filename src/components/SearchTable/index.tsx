@@ -10,7 +10,7 @@ export function SearchTable() {
 
     const { load_top_250, favorite_toggle } = useActions(logic);
 
-    const { films, loading } = useValues(logic)
+    const { films } = useValues(logic)
 
     useEffect(() => {
         if (films.list.length === 0 && films.requested_date === null) load_top_250();

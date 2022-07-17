@@ -4,5 +4,6 @@
     /* background-color: rgb(102, 101, 101); */
     max-width: 100%;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-between;
 }

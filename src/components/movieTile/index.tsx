@@ -23,7 +23,6 @@ export function MovieTile(props: TileProps) {
                 <ul style={{ listStyle: 'none', paddingLeft: 15, display: 'inline-block', width: '40%', verticalAlign: 'top' }}>
                     <li>Rating: {imDbRating}</li>
                     <li>Rank: {rank}</li>
-                    <li>Crew: {crew}</li>
                 </ul>
             </div>
 
