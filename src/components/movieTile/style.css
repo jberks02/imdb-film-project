@@ -1,6 +1,7 @@
 .tile {
     width: 285px;
     margin: 2px;
+    /* margin-right: auto; */
     padding: 5px;
     background-color: #fefefe;
     height: 100%;

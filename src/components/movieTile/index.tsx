@@ -13,7 +13,7 @@ export function MovieTile(props: TileProps) {
         <div className="tile">
             <div className='tile-title'>
                 <IconButton style={{ float: 'left', padding: 5 }} onClick={() => { update_favorite(index) }}>
-                    {favorite === true ? <StarOutline style={{ fill: 'gold', stroke: 'gold', paddingRight: 5 }} /> : <Star style={{ fill: 'gold', stroke: 'gold', paddingRight: 5 }} />}
+                    {favorite === true ? <Star style={{ fill: 'gold', stroke: 'gold', paddingRight: 5 }} /> : <StarOutline style={{ fill: 'gold', stroke: 'gold', paddingRight: 5 }} />}
                 </IconButton>
                 <span >{fullTitle}</span>
             </div>

@@ -2,10 +2,6 @@ import { kea, MakeLogicType } from 'kea'
 import { imdbMovie } from 'types/imdb_types';
 import { get_top_250 } from '../../api_calls/imdb_api';
 
-// const key = process.env.imdb_key;
-
-// console.log(key)
-
 interface Values {
     loading: boolean,
     films: {
@@ -26,6 +22,7 @@ interface Actions {
     load_top_250: () => ({});
     favorite_toggle: (index: number) => ({ index: number })
     search_top_250: (search: string) => ({ search: string })
+    filter_top_250: (filter: Partial<imdbMovie> | null) => ({ filter: Partial<imdbMovie> | null })
 }
 
 type myLogicType = MakeLogicType<Values, Actions, Props>
@@ -36,7 +33,8 @@ export const logic = kea<myLogicType>({
         toggleLoading: true,
         load_top_250: () => ({}),
         favorite_toggle: (index) => ({ index }),
-        search_top_250: (search) => ({ search })
+        search_top_250: (search) => ({ search }),
+        filter_top_250: (filter) => ({ filter })
     },
     listeners: ({ actions }) => ({
         load_top_250: async () => {
@@ -88,12 +86,14 @@ export const logic = kea<myLogicType>({
                 top_250: (_, { set }) => ({ ...set }),
                 favorite_toggle: (state, { index }) => {
                     state.list[index].favorite = state.list[index].favorite === true ? false : true;
+                    const master_set: Values['films'] = JSON.parse(localStorage.getItem('imdbtop250') as string);
                     const keyedFavoritesList: Record<string, boolean> = state.list.reduce((acc: Record<string, boolean>, it) => {
                         if (it.favorite === true) acc[it.id] = true;
                         return acc;
-                    }, {})
-                    localStorage.setItem('favorites', JSON.stringify(keyedFavoritesList))
-                    localStorage.setItem('imdbtop250', JSON.stringify(state))
+                    }, {});
+                    master_set.list[index].favorite = state.list[index].favorite
+                    localStorage.setItem('favorites', JSON.stringify(keyedFavoritesList));
+                    localStorage.setItem('imdbtop250', JSON.stringify(master_set))
                     return { ...state }
                 },
                 search_top_250: (_, { search }) => {
@@ -104,6 +104,27 @@ export const logic = kea<myLogicType>({
                             return y.fullTitle.toLowerCase().includes(search.toLowerCase());
                         })
                     }
+                },
+                filter_top_250: (_, { filter }) => {
+
+                    const set: Values['films'] = JSON.parse(localStorage.getItem('imdbtop250') as string);
+
+                    if (filter === null) return { ...set }
+
+                    return {
+                        ...set,
+                        list: set.list.filter((y) => {
+                            let conforming = false;
+
+                            for (const key in filter) {
+                                conforming = y[key as keyof imdbMovie] === filter[key as keyof imdbMovie]
+                            }
+
+                            return conforming
+
+                        })
+                    }
+
                 }
             },
         ],
