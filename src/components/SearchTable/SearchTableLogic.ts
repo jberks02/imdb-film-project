@@ -26,6 +26,7 @@ interface Actions {
     load_top_250: () => ({});
     favorite_toggle: (index: number) => ({ index: number })
     search_top_250: (search: string) => ({ search: string })
+    filter_top_250: (filter: Partial<imdbMovie> | null) => ({ filter: Partial<imdbMovie> | null })
 }
 
 type myLogicType = MakeLogicType<Values, Actions, Props>
@@ -36,7 +37,8 @@ export const logic = kea<myLogicType>({
         toggleLoading: true,
         load_top_250: () => ({}),
         favorite_toggle: (index) => ({ index }),
-        search_top_250: (search) => ({ search })
+        search_top_250: (search) => ({ search }),
+        filter_top_250: (filter) => ({ filter })
     },
     listeners: ({ actions }) => ({
         load_top_250: async () => {
@@ -104,6 +106,27 @@ export const logic = kea<myLogicType>({
                             return y.fullTitle.toLowerCase().includes(search.toLowerCase());
                         })
                     }
+                },
+                filter_top_250: (_, { filter }) => {
+
+                    const set: Values['films'] = JSON.parse(localStorage.getItem('imdbtop250') as string);
+
+                    if (filter === null) return { ...set }
+
+                    return {
+                        ...set,
+                        list: set.list.filter((y) => {
+                            let conforming = false;
+
+                            for (const key in filter) {
+                                conforming = y[key as keyof imdbMovie] === filter[key as keyof imdbMovie]
+                            }
+
+                            return conforming
+
+                        })
+                    }
+
                 }
             },
         ],
