@@ -9,6 +9,7 @@ export interface imdbMovie {
     title: string;
     year: string;
     favorite?: boolean;
+    summary?: string;
 }
 
 export interface top250Response {
@@ -16,7 +17,38 @@ export interface top250Response {
     items: imdbMovie[]
 }
 
-interface TileProps extends imdbMovie {
+export interface TileProps extends imdbMovie {
     index: number;
     update_favorite: Function
+}
+
+export interface MovieModalProps extends imdbMovie {
+    open: boolean,
+    setStatus: Function
+}
+
+export interface listItems {
+    Rating: string,
+    Rank: string,
+    Crew: string
+}
+
+export interface SummaryBody {
+    imDbId: string;
+    title: string;
+    fullTitle: string;
+    type: string;
+    year: string;
+    language: string;
+    titleInLanguage: string;
+    url: string;
+    plotShort: {
+        plainText: string
+        html: string
+    },
+    plotFull: {
+        plainText: string
+        html: string
+    },
+    errorMessage: string
 }

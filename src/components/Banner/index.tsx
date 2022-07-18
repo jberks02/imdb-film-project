@@ -4,7 +4,7 @@ import Drawer from '@mui/material/Drawer';
 import SearchIcon from '@mui/icons-material/Search';
 import { MenuSharp } from '@mui/icons-material';
 import { useActions } from 'kea';
-import { logic } from '../SearchTable/SearchTableLogic';
+import { logic } from '../imdbTileContainer/moveListLogic';
 import './style.css'
 
 export function Banner() {

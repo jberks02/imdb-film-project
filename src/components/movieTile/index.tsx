@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { TileProps } from "../../types/imdb_types";
 import { IconButton } from "@mui/material";
-import { Star, StarOutline } from '@mui/icons-material';
+import { OpenInFull, Star, StarOutline } from '@mui/icons-material';
+import { MovieSummaryModal } from "../MovieSummaryModal";
 import './style.css'
 
 
 
 export function MovieTile(props: TileProps) {
-    const { imDbRating, image, fullTitle, crew, rank, favorite, update_favorite, index } = props
+
+    const [open, setState] = useState(false);
+
+    const { imDbRating, image, fullTitle, rank, favorite, update_favorite, index } = props
+
+    const toggleOpen = (): void => setState(!open)
 
     return (
         <div className="tile">
@@ -25,8 +31,10 @@ export function MovieTile(props: TileProps) {
                     <li>Rank: {rank}</li>
                 </ul>
             </div>
-
-
+            <IconButton style={{ float: 'right' }} onClick={() => toggleOpen()}>
+                <OpenInFull />
+            </IconButton>
+            <MovieSummaryModal open={open} {...props} setStatus={toggleOpen} />
         </div >
     )
 }
