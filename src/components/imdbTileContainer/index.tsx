@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useValues, useActions } from 'kea'
-import { logic } from './SearchTableLogic';
+import { logic } from './moveListLogic';
 import './style.css'
 import { MovieTile } from '../movieTile/index';
 

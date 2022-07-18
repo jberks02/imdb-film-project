@@ -1,0 +1,28 @@
+.movie-modal-container {
+    padding: 10px
+}
+
+.movie-modal-title {
+    text-align: center;
+
+}
+
+.summary-image {
+    width: 128px;
+    height: 176px;
+    align-self: center;
+}
+
+.movie-details {
+    font-size: 25;
+    margin-right: 10px
+}
+
+.summary-span {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    border: 2px solid #d0cccc;
+    border-radius: 5px;
+}

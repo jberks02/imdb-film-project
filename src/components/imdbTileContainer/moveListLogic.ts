@@ -1,6 +1,6 @@
 import { kea, MakeLogicType } from 'kea'
 import { imdbMovie } from 'types/imdb_types';
-import { get_top_250 } from '../../api_calls/imdb_api';
+import { get_top_250, get_summary_by_id } from '../../api_calls/imdb_api';
 
 interface Values {
     loading: boolean,
@@ -23,6 +23,7 @@ interface Actions {
     favorite_toggle: (index: number) => ({ index: number })
     search_top_250: (search: string) => ({ search: string })
     filter_top_250: (filter: Partial<imdbMovie> | null) => ({ filter: Partial<imdbMovie> | null })
+    setSummary: (id: string) => ({ id: string });
 }
 
 type myLogicType = MakeLogicType<Values, Actions, Props>
@@ -34,9 +35,31 @@ export const logic = kea<myLogicType>({
         load_top_250: () => ({}),
         favorite_toggle: (index) => ({ index }),
         search_top_250: (search) => ({ search }),
-        filter_top_250: (filter) => ({ filter })
+        filter_top_250: (filter) => ({ filter }),
+        setSummary: (id) => ({ id })
     },
     listeners: ({ actions }) => ({
+        setSummary: async ({ id }) => {
+
+            const set: Values['films'] = JSON.parse(localStorage.getItem('imdbtop250') as string);
+
+            const idIndex = set.list.findIndex((y) => y.id === id);
+
+            if (idIndex === -1) throw Error('Invalid id sent to setSummary action.')
+
+            if (typeof set.list[idIndex].summary === 'string') return;
+            else {
+                const summaryFull = await get_summary_by_id(id);
+
+                set.list[idIndex].summary = summaryFull.plotShort.plainText;
+
+                actions.top_250(set);
+
+            }
+
+
+
+        },
         load_top_250: async () => {
 
             const loadData = async () => {
