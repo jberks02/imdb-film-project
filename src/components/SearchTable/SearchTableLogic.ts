@@ -2,10 +2,6 @@ import { kea, MakeLogicType } from 'kea'
 import { imdbMovie } from 'types/imdb_types';
 import { get_top_250 } from '../../api_calls/imdb_api';
 
-// const key = process.env.imdb_key;
-
-// console.log(key)
-
 interface Values {
     loading: boolean,
     films: {
@@ -90,12 +86,14 @@ export const logic = kea<myLogicType>({
                 top_250: (_, { set }) => ({ ...set }),
                 favorite_toggle: (state, { index }) => {
                     state.list[index].favorite = state.list[index].favorite === true ? false : true;
+                    const master_set: Values['films'] = JSON.parse(localStorage.getItem('imdbtop250') as string);
                     const keyedFavoritesList: Record<string, boolean> = state.list.reduce((acc: Record<string, boolean>, it) => {
                         if (it.favorite === true) acc[it.id] = true;
                         return acc;
-                    }, {})
-                    localStorage.setItem('favorites', JSON.stringify(keyedFavoritesList))
-                    localStorage.setItem('imdbtop250', JSON.stringify(state))
+                    }, {});
+                    master_set.list[index].favorite = state.list[index].favorite
+                    localStorage.setItem('favorites', JSON.stringify(keyedFavoritesList));
+                    localStorage.setItem('imdbtop250', JSON.stringify(master_set))
                     return { ...state }
                 },
                 search_top_250: (_, { search }) => {
