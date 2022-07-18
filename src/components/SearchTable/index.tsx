@@ -20,7 +20,11 @@ export function SearchTable() {
         <div className='container'>
             {
                 films.list.length > 0 &&
-                films.list.map((film, i) => <MovieTile
+                films.list.sort((a, b) => {
+                    const aOperand = a.favorite === true ? 1 : 0;
+                    const bOperand = b.favorite === true ? 1 : 0;
+                    return bOperand - aOperand;
+                }).map((film, i) => <MovieTile
                     key={film.id + i}
                     {...film}
                     update_favorite={favorite_toggle}
