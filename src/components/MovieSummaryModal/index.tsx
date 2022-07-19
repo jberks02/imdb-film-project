@@ -18,7 +18,7 @@ export function MovieSummaryModal(props: MovieModalProps) {
     }
 
     useEffect(() => {
-        if (props.open === true) setSummary(id)
+        if (props.open === true && summary === undefined) setSummary(id)
     })
 
     return (
@@ -28,11 +28,11 @@ export function MovieSummaryModal(props: MovieModalProps) {
                 <h3 className='movie-modal-title' >{fullTitle}</h3>
                 {
                     Object.keys(listItems).map((key) => {
-                        return <span className='movie-details' key={key} >{key}: {listItems[key as keyof listItems]}</span>
+                        return <span className='movie-details' key={key} ><b>{key}</b>: {listItems[key as keyof listItems]}</span>
                     })
                 }
                 <span className='summary-span'>Summary</span>
-                <p>{summary}</p>
+                <p>{summary && summary.length ? summary : 'No summary was found on Wikipedia for this film'}</p>
             </div>
         </Dialog>
     )
