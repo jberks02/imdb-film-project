@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { Input, IconButton, ListItem, List, ListItemButton, ListItemText } from '@mui/material';
+import ListItemText from '@mui/material/ListItemText';
+import Input from '@mui/material/Input';
+import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
 import Drawer from '@mui/material/Drawer';
 import SearchIcon from '@mui/icons-material/Search';
-import { MenuSharp } from '@mui/icons-material';
+import MenuSharp from '@mui/icons-material/MenuSharp';
 import { useActions } from 'kea';
 import { logic } from '../imdbTileContainer/moveListLogic';
 import './style.css'
