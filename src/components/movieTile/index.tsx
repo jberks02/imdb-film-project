@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { TileProps } from "../../types/imdb_types";
-import { IconButton } from "@mui/material";
-import { OpenInFull, Star, StarOutline } from '@mui/icons-material';
+import IconButton from "@mui/material/IconButton";
+import OpenInFull from '@mui/icons-material/OpenInFull';
+import Star from '@mui/icons-material/Star';
+import StarOutline from '@mui/icons-material/StarOutline';
 import { MovieSummaryModal } from "../MovieSummaryModal";
 import './style.css'
 

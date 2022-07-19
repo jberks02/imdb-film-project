@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Dialog } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
 import { listItems, MovieModalProps } from 'types/imdb_types';
 import { useActions } from 'kea';
 import { logic } from '../imdbTileContainer/moveListLogic';
