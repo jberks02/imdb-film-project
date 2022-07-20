@@ -27,7 +27,7 @@ module.exports = {
     },
     devServer: {
         static: {
-            directory: path.join(__dirname, 'public/'),
+            directory: path.join(__dirname, 'devpublic/'),
         },
         port: 3000,
         devMiddleware: {

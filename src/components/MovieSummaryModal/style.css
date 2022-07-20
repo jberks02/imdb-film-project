@@ -10,12 +10,11 @@
 .summary-image {
     width: 128px;
     height: 176px;
-    align-self: center;
 }
 
 .movie-details {
     font-size: 25;
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .summary-span {
