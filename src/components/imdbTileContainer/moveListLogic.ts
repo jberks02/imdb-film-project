@@ -55,6 +55,8 @@ export const logic = kea<myLogicType>({
 
                 actions.top_250(set);
 
+                localStorage.setItem('imdbtop250', JSON.stringify(set));
+
             }
 
 

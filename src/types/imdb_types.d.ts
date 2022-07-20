@@ -27,12 +27,6 @@ export interface MovieModalProps extends imdbMovie {
     setStatus: Function
 }
 
-export interface listItems {
-    Rating: string,
-    Rank: string,
-    Crew: string
-}
-
 export interface SummaryBody {
     imDbId: string;
     title: string;
